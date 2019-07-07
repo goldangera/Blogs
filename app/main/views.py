@@ -154,6 +154,15 @@ def update_post(id):
 
         db.session.commit()
 
-        return redirect(url_for('main.post',id = post.id))
+    return redirect(url_for('main.post',id = post.id))
 
     return render_template('update.html',form = form)
+
+@main.route('/user/<uname>/blogs')
+def user_blogs(uname):
+    user = User.query.filter_by(username=uname).first()
+    blogs = Post.query.filter_by(user_id = user.id).all()
+    # blogs_count = Blog.count_blogs(uname)
+    user_joined = user.date_joined.strftime('%b %d, %Y')
+
+    return render_template("profile/blogs.html", user=user, posts=blogs,date = user_joined)
