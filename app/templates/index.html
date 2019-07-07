@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro%}
+<!-- Content block -->
+{%block content%}
+
+<div class="jumbotron text-center" style="background-color: #463145; color: rgb(7, 12, 8); padding: 50px 25px;">
+    <h1><i><b>ITS SUPER BLOG</i></b></h1>
+</div>   
+<div class="container" style="padding-bottom: 30px;">
+    <a href="{{url_for('main.new_post')}}" class="btn btn-success">Tell Us Something New</a>
+</div>
+
+<div class="container" style="padding-bottom: 20px;">
+
+</div>
+<div class="container">
+    <h1><i>Fresh and newly posted Blogposts</i></h1>
+    
+    <hr>
+    {{macro.displayPosts(posts)}}
+   
+    {{random.quote}}
+    
+</div>    
+{%endblock%}
