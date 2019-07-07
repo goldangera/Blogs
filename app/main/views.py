@@ -63,3 +63,23 @@ def update_pic(uname):
 
    return redirect(url_for('main.profile',uname=uname))
 
+@main.route('/post/new', methods = ['GET','POST'])
+@login_required
+def new_post():
+    post_form = PostForm()
+    if post_form.validate_on_submit():
+        title = post_form.title.data
+        text = post_form.text.data
+        
+
+        # Updated post instance
+        new_post = Post(title=title,text=text)
+
+        # Save post method
+        new_post.save_post()
+        return redirect(url_for('.index'))
+
+    title = 'New post'
+    return render_template('new_post.html',title = title,post_form=post_form )
+
+
