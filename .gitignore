@@ -5,7 +5,7 @@ __pycache__/
 *.class
 instance
 
-
+virtual/
 start.sh
 
 # C extensions
