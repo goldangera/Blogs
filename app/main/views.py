@@ -108,3 +108,11 @@ def post(id):
     title = f'{post.title}'
     return render_template('post.html',title = title, post = post, form = form, comments = comments)
 
+@main.route('/delete_comment/<id>/<post_id>',methods = ['GET','POST'])
+def delete_comment(id,post_id):
+    comment = Comment.query.filter_by(id = id).first()
+
+    db.session.delete(comment)
+    db.session.commit()
+
+    return redirect(url_for('main.post',id = post_id))
