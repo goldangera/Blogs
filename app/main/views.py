@@ -82,4 +82,29 @@ def new_post():
     title = 'New post'
     return render_template('new_post.html',title = title,post_form=post_form )
 
+@main.route('/posts')
+def all_posts():
+    posts = Post.query.order_by(Post.date_posted.desc()).all()
+
+    title = 'Blog posts'
+
+    return render_template('posts.html', title = title, posts = posts)
+
+@main.route('/post/<int:id>',methods=['GET','POST'])
+def post(id):
+
+    form = CommentForm()
+    post = Post.get_post(id)
+
+    if form.validate_on_submit():
+        comment = form.text.data
+
+        new_comment = Comment(comment = comment,user = current_user,post = post.id)
+
+        new_comment.save_comment()
+
+
+    comments = Comment.get_comments(post)
+    title = f'{post.title}'
+    return render_template('post.html',title = title, post = post, form = form, comments = comments)
 
