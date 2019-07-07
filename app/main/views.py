@@ -135,3 +135,25 @@ def subscribe(id):
     db.session.commit()
 
     return redirect(url_for('main.index'))
+
+@main.route('/post/update/<id>',methods = ['GET','POST'])
+def update_post(id):
+    form = PostForm()
+
+    post = Post.query.filter_by(id = id).first()
+
+    form.title.data = post.title
+    form.text.data = post.text
+
+    if form.validate_on_submit():
+        title = form.title.data
+        text = form.text.data
+
+        post.title = title
+        post.text = text
+
+        db.session.commit()
+
+        return redirect(url_for('main.post',id = post.id))
+
+    return render_template('update.html',form = form)
