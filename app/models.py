@@ -67,3 +67,20 @@ class Post(db.Model):
     def get_post(id):
         post = Post.query.filter_by(id=id).first()
         return post
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String(1000))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    post = db.Column(db.Integer, db.ForeignKey('posts.id'))
+
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_comments(cls, post):
+        comments = Comment.query.filter_by(post=post.id).all()
+        return comments
