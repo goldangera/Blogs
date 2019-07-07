@@ -116,3 +116,12 @@ def delete_comment(id,post_id):
     db.session.commit()
 
     return redirect(url_for('main.post',id = post_id))
+
+@main.route('/delete_post/<id>',methods = ['GET','POST'])
+def delete_post(id):
+    post = Post.query.filter_by(id = id).first()
+
+    db.session.delete(post)
+    db.session.commit()
+
+    return redirect(url_for('main.all_posts'))
