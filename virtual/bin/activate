@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/golda/Desktop/lst-flask-project/app/templates/virtual"
+VIRTUAL_ENV="/home/golda/Desktop/lst-flask-project/virtual"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
