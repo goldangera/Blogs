@@ -1,11 +1,10 @@
-
+import os
 class Config:
     '''
     General config parent class
     '''
     SQLALCHEMY_TRACK_MODIFICATIONS= True
-    SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://golda:123@localhost/blogapp'
+    
 
     # email configs
     MAIL_SERVER = 'smtp.googlemail.com'
@@ -18,8 +17,8 @@ class Config:
     UPLOADED_PHOTOS_DEST ='app/static/photos'
 
 class ProdConfig(Config):
-     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://golda:123@localhost/blog'
 class TestConfig(Config):
     pass
 

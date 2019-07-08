@@ -9,14 +9,15 @@ import datetime
 import json 
 import requests
 
+
 @main.route('/')
 def index():
     '''
     view root page function that returns index page & data
     '''
-    posts = Post.query.order_by(Post.date_posted.desc()).limit(3).all()
+    
 
-    title = 'Home - Welcome to the SUPER BLOG POST '
+    title = 'Home - Welcome to the SUPPER Blog'
     
     random=requests.get('http://quotes.stormconsultancy.co.uk/random.json').json()
     return render_template('index.html',index=index, title=title, post=post, random=random)
@@ -48,7 +49,8 @@ def update_profile(uname):
 
        return redirect(url_for('.profile',uname=user.username))
 
-    return render_template('profile/update.html',form =form)
+   return render_template('profile/update.html',form =form)
+
 
 @main.route('/user/<uname>/update/pic', methods=['POST'])
 @login_required
@@ -105,6 +107,7 @@ def post(id):
 
 
     comments = Comment.get_comments(post)
+
     title = f'{post.title}'
     return render_template('post.html',title = title, post = post, form = form, comments = comments)
 
@@ -154,7 +157,7 @@ def update_post(id):
 
         db.session.commit()
 
-    return redirect(url_for('main.post',id = post.id))
+        return redirect(url_for('main.post',id = post.id))
 
     return render_template('update.html',form = form)
 
