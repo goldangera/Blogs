@@ -4,7 +4,7 @@ class Config:
     General config parent class
     '''
     SQLALCHEMY_TRACK_MODIFICATIONS= True
-    
+    SECRET_KEY = os.urandom(32)
 
     # email configs
     MAIL_SERVER = 'smtp.googlemail.com'

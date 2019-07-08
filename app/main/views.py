@@ -24,7 +24,7 @@ def index():
 
 @main.route('/user/<uname>')
 def profile(uname):
-    user = User.query.filter_by(username = uname).first()
+    #user = User.query.filter_by(username = uname).first()
     user_joined = user.date_joined.strftime('%b %d, %Y')
 
     if user is None:
@@ -55,7 +55,8 @@ def update_profile(uname):
 @main.route('/user/<uname>/update/pic', methods=['POST'])
 @login_required
 def update_pic(uname):
-   user = User.query.filter_by(username = uname).first()
+   
+   # user = User.query.filter_by(username = uname).first()
 
    if 'photo' in request.files:
        filename = photos.save(request.files['photo'])
@@ -86,7 +87,7 @@ def new_post():
 
 @main.route('/posts')
 def all_posts():
-    posts = Post.query.order_by(Post.date_posted.desc()).all()
+    
 
     title = 'Blog posts'
 
@@ -131,7 +132,8 @@ def delete_post(id):
 
 @main.route('/subscribe/<id>')
 def subscribe(id):
-    user = User.query.filter_by(id = id).first()
+    
+    # user = User.query.filter_by(id = id).first()
 
     user.subscription = True
 
@@ -163,8 +165,8 @@ def update_post(id):
 
 @main.route('/user/<uname>/blogs')
 def user_blogs(uname):
-    user = User.query.filter_by(username=uname).first()
-    blogs = Post.query.filter_by(user_id = user.id).all()
+     #user = User.query.filter_by(username=uname).first()
+    #blogs = Post.query.filter_by(user_id = user.id).all()
     # blogs_count = Blog.count_blogs(uname)
     user_joined = user.date_joined.strftime('%b %d, %Y')
 
