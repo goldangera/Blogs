@@ -91,7 +91,7 @@ def all_posts():
 
     title = 'Blog posts'
 
-    return render_template('posts.html', title = title, posts = posts)
+    return render_template('posts.html', title = title)
 
 @main.route('/post/<int:id>',methods=['GET','POST'])
 def post(id):

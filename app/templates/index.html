@@ -2,29 +2,40 @@
 {% import 'macros.html' as macro%}
 
 {%block styles%}
-    {{ super() }}
-    <link rel="stylesheet" href="{{url_for('static',filename='css/first.css')}}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico')}}">
-
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/first.css')}}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico')}}">
 {%endblock%}
 
-<div class="jumbotron text-center" style="background-color: #c220a4; color: rgb(20, 19, 19); padding: 100px 25px;"></div>
+{%block content%}
+<div class='beginr'>
     <h1><i><b>ITS SUPPER BLOG</i></b></h1>
-</div>   
-<div class="container" style="padding-bottom: 30px;">
-    <a href="{{url_for('main.new_post')}}" class="btn btn-success">Tell Us Something New</a>
+    <div class="container" style="padding-bottom: 30px;">
+        <a href="{{url_for('main.new_post')}}" class="btn btn-success">Tell Us Something New</a>
+    </div>
 </div>
-
 <div class="container" style="padding-bottom: 20px;">
 
 </div>
 <div class="container">
     <h1><i>Fresh and newly posted Blogposts</i></h1>
-    
+
     <hr>
     {{macro.displayPosts(posts)}}
-   
+
     {{random.quote}}
-    
-</div>    
+
+</div>
+
+
+<style>
+    body {
+        background-image: url('../static/img/woman.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .beginr{
+        text-align: center;
+    }
+</style>
 {%endblock%}

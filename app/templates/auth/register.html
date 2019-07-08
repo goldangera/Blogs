@@ -3,15 +3,23 @@
 
 {% block content %}
 <div class="container">
-<div class="row" style="margin-top: 50px;">
-<div class="col-md-2"> </div>
-<div class="col-md-8">
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-md-2"> </div>
+        <div class="col-md-8">
 
-{{wtf.quick_form(registration_form)}}
+            {{wtf.quick_form(registration_form)}}
 
-</div>
-<div class="col-md-2"></div>
-</div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 </div>
 
+
+<style>
+    body {
+        background-image: url('../../static/img/writing-1209121_960_720.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
 {% endblock%}
